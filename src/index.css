@@ -1,0 +1,13 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global styles */
+body {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  background-color: #0b1121;
+  color: #e2e8f0;
+}
+
+
