@@ -3,15 +3,13 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
+
   "homepage": "https://argenis972.github.io/Portf-lio",
-  
 
   "scripts": {
     "dev": "vite",
-    "start": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "preview": "vite preview",
-    "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
 
