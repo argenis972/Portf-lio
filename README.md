@@ -68,5 +68,5 @@ Estou aberto a oportunidades de trabalho, colaborações open source ou apenas p
 
 ---
 
-Desenvolvido com 💙 e muita dedicação por **Argenis López**.
+Desenvolvido por **Argenis López**.
 
