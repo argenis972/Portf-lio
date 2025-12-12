@@ -1,38 +1,32 @@
-// api/send-email.ts
-
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import nodemailer from 'nodemailer';
 import cors from 'cors'; // Necesario para peticiones desde GitHub Pages
 
-// 1. Configuración de CORS
-// Reemplaza con el dominio exacto de tu GitHub Pages (ej: https://usuario.github.io/repo)
-const allowedOrigins = ['https://tu-usuario.github.io', 'http://localhost:5173']; // Añade localhost para pruebas
+
+// api/send-email.ts
+
+// 1. Configuração de CORS
+// Adicione a URL base do seu GitHub Pages AQUI
+const allowedOrigins = [
+    'https://argenis972.github.io', // URL base (sem a barra final)
+    'http://localhost:5173'         // Para testes locais
+]; 
 
 const corsMiddleware = cors({
-  origin: (origin, callback) => {
-    // Permite peticiones sin origen (como clientes REST o POSTMAN)
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.includes(origin) || origin.startsWith('https://tu-usuario.github.io/')) {
-      return callback(null, true);
-    }
-    const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-    return callback(new Error(msg), false);
-  },
-  methods: ['POST'],
-  optionsSuccessStatus: 200,
+    origin: (origin, callback) => {
+        // ... (O restante da lógica de CORS que você já tem) ...
+        if (!origin) return callback(null, true);
+        // Usamos startsWith para cobrir caminhos como /Portf-lio/
+        if (allowedOrigins.includes(origin) || origin.startsWith('https://argenis972.github.io/')) { 
+            return callback(null, true);
+        }
+        const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+        return callback(new Error(msg), false);
+    },
+    methods: ['POST'],
+    optionsSuccessStatus: 200,
 });
 
-// Función auxiliar para aplicar el middleware de CORS
-const runMiddleware = (req: VercelRequest, res: VercelResponse, fn: Function) => {
-  return new Promise((resolve, reject) => {
-    fn(req, res, (result: any) => {
-      if (result instanceof Error) {
-        return reject(result);
-      }
-      return resolve(result);
-    });
-  });
-};
 
 // 2. Handler principal de Vercel
 export default async function (req: VercelRequest, res: VercelResponse) {
