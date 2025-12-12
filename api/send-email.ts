@@ -1,0 +1,96 @@
+// api/send-email.ts
+
+import type { VercelRequest, VercelResponse } from '@vercel/node';
+import nodemailer from 'nodemailer';
+import cors from 'cors'; // Necesario para peticiones desde GitHub Pages
+
+// 1. Configuración de CORS
+// Reemplaza con el dominio exacto de tu GitHub Pages (ej: https://usuario.github.io/repo)
+const allowedOrigins = ['https://tu-usuario.github.io', 'http://localhost:5173']; // Añade localhost para pruebas
+
+const corsMiddleware = cors({
+  origin: (origin, callback) => {
+    // Permite peticiones sin origen (como clientes REST o POSTMAN)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin) || origin.startsWith('https://tu-usuario.github.io/')) {
+      return callback(null, true);
+    }
+    const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+    return callback(new Error(msg), false);
+  },
+  methods: ['POST'],
+  optionsSuccessStatus: 200,
+});
+
+// Función auxiliar para aplicar el middleware de CORS
+const runMiddleware = (req: VercelRequest, res: VercelResponse, fn: Function) => {
+  return new Promise((resolve, reject) => {
+    fn(req, res, (result: any) => {
+      if (result instanceof Error) {
+        return reject(result);
+      }
+      return resolve(result);
+    });
+  });
+};
+
+// 2. Handler principal de Vercel
+export default async function (req: VercelRequest, res: VercelResponse) {
+  // Aplicar CORS
+  try {
+    await runMiddleware(req, res, corsMiddleware);
+  } catch (error) {
+    return res.status(403).json({ success: false, message: 'CORS check failed.' });
+  }
+
+  // Solo aceptar peticiones POST
+  if (req.method !== 'POST') {
+    return res.status(405).json({ success: false, message: 'Method Not Allowed' });
+  }
+
+  const { name, email, message } = req.body;
+
+  // 3. Validación básica
+  if (!name || !email || !message) {
+    return res.status(400).json({ success: false, message: 'Missing required fields: name, email, or message.' });
+  }
+
+  // 4. Configuración del Transporter de Nodemailer con OAuth2
+  // Las credenciales se obtienen de las variables de entorno de Vercel
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      type: 'OAuth2',
+      user: process.env.MAIL_USER, // Tu correo de Gmail
+      clientId: process.env.CLIENT_ID,
+      clientSecret: process.env.CLIENT_SECRET,
+      refreshToken: process.env.REFRESH_TOKEN,
+      accessToken: process.env.ACCESS_TOKEN, // Opcional, pero recomendado
+    },
+  } as nodemailer.TransportOptions); // Usamos 'as' para evitar problemas de tipado con Vercel/Node
+
+  // 5. Opciones del correo
+  const mailOptions = {
+    from: `"Portafolio Contacto" <${process.env.MAIL_USER}>`,
+    to: process.env.MAIL_USER, // Te lo envías a ti mismo
+    subject: `Nuevo mensaje de ${name} desde tu portafolio`,
+    html: `
+      <h2>Nuevo Mensaje</h2>
+      <p><strong>De:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <hr>
+      <p><strong>Mensaje:</strong></p>
+      <p>${message}</p>
+    `,
+  };
+
+  // 6. Envío del correo
+  try {
+    const info = await transporter.sendMail(mailOptions);
+    console.log('Message sent: %s', info.messageId);
+    return res.status(200).json({ success: true, message: 'Email sent successfully!' });
+  } catch (error) {
+    console.error('Error sending email:', error);
+    return res.status(500).json({ success: false, message: 'Failed to send email.', error: (error as Error).message });
+  }
+}
