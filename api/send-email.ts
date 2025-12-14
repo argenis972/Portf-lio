@@ -5,12 +5,14 @@ import cors from 'cors'; // Necesario para peticiones desde GitHub Pages
 
 // api/send-email.ts
 
+
 // 1. Configuração de CORS
-// Adicione a URL base do seu GitHub Pages AQUI
+// Adicione a URL base do seu GitHub Pages AQUi
 const allowedOrigins = [
-    'https://argenis972.github.io', // URL base (sem a barra final)
-    'http://localhost:5173'         // Para testes locais
-]; 
+    'https://argenis972.github.io', // Não mude este, pois é a origem
+    'https://argenis972.github.io/Portf-lio', // Não precisa, pois o CORS usa apenas a raiz
+    'http://localhost:5173'
+];
 
 const corsMiddleware = cors({
     origin: (origin, callback) => {
