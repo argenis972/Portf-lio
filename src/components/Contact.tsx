@@ -1,185 +1,121 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Mail, MessageSquare, Send, MapPin, Phone } from 'lucide-react';
 
-// 1. CORRECCIÓN DE LA URL DEL ENDPOINT
-// EL DOMINIO DEBE SER SOLO UNA VEZ. La ruta es /api/send-email.
-const API_ENDPOINT = 'https://portf-lio-r9ps.vercel.app/api/send-email';
-
 const Contact: React.FC = () => {
-    // 2. AÑADIR ESTADO PARA EL FORMULARIO
-    const [formData, setFormData] = useState({ 
-        name: '', 
-        email: '', 
-        subject: '', // Usaremos 'subject' para el asunto
-        message: '' 
-    });
-    const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-    const [responseMessage, setResponseMessage] = useState('');
+  return (
+    <section className="py-24 bg-gradient-to-b from-dark to-black relative" id="contact">
+      <div className="container mx-auto px-6 max-w-6xl">
+        <div className="grid lg:grid-cols-5 gap-12 items-start">
+            
+          {/* Informações de Contato */}
+          <div className="lg:col-span-2 space-y-8">
+            <div>
+                <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-4">Vamos conversar?</h2>
+                <p className="text-slate-400 text-lg leading-relaxed">
+                  Estou disponível para novos projetos e oportunidades. Entre em contato para discutirmos como posso ajudar.
+                </p>
+            </div>
+            
+            <div className="space-y-6 mt-8">
+                <a href="mailto:argenislopez28708256@gmail.com" className="flex items-start space-x-4 p-4 rounded-2xl hover:bg-slate-800/50 transition-colors group">
+                  <div className="p-3 bg-blue-500/10 rounded-xl text-blue-500 group-hover:bg-blue-500 group-hover:text-white transition-all">
+                    <Mail size={24} />
+                  </div>
+                  <div>
+                    <h3 className="text-white font-semibold text-lg">Email</h3>
+                    <p className="text-slate-400 text-sm break-all">argenislopez28708256@gmail.com</p>
+                  </div>
+                </a>
 
-    // Manejador genérico para todos los inputs
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setFormData({ 
-            ...formData, 
-            [e.target.name]: e.target.value 
-        });
-    };
+                <a href="https://wa.me/5541995103364" target="_blank" rel="noopener noreferrer" className="flex items-start space-x-4 p-4 rounded-2xl hover:bg-slate-800/50 transition-colors group">
+                  <div className="p-3 bg-green-500/10 rounded-xl text-green-500 group-hover:bg-green-500 group-hover:text-white transition-all">
+                    <Phone size={24} />
+                  </div>
+                  <div>
+                    <h3 className="text-white font-semibold text-lg">Celular / WhatsApp</h3>
+                    <p className="text-green-400 mt-1">(41) 9 9510-3364</p>
+                  </div>
+                </a>
+                
+                <a href="https://www.linkedin.com/in/argenis-lópez-649701304" target="_blank" rel="noopener noreferrer" className="flex items-start space-x-4 p-4 rounded-2xl hover:bg-slate-800/50 transition-colors group">
+                  <div className="p-3 bg-blue-700/10 rounded-xl text-blue-700 group-hover:bg-blue-700 group-hover:text-white transition-all">
+                    <MessageSquare size={24} />
+                  </div>
+                  <div>
+                    <h3 className="text-white font-semibold text-lg">LinkedIn</h3>
+                    <p className="text-blue-400 mt-1">Ver Perfil Profissional</p>
+                  </div>
+                </a>
 
-    // 3. IMPLEMENTAR LA LÓGICA DE ENVÍO
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        
-        // Evitar envíos múltiples
-        if (status === 'loading') return;
-
-        setStatus('loading');
-        setResponseMessage('');
-
-        try {
-            const response = await fetch(API_ENDPOINT, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                // Asegúrate de enviar solo los campos que tu API espera (name, email, message)
-                // O puedes enviar el 'subject' también y modificar la API para incluirlo en el correo
-                body: JSON.stringify({
-                    name: formData.name,
-                    email: formData.email,
-                    subject: formData.subject,
-                    message: `Asunto: ${formData.subject}\n\nMensaje: ${formData.message}`, // Combina para enviar un solo 'message'
-                }),
-            });
-
-            const data = await response.json();
-
-            if (response.ok && data.success) {
-                setStatus('success');
-                setResponseMessage('🎉 Mensaje enviado con éxito! Te contactaré pronto.');
-                // Limpiar el formulario
-                setFormData({ name: '', email: '', subject: '', message: '' }); 
-            } else {
-                // El servidor respondió con un error (ej: 400 Bad Request)
-                throw new Error(data.message || 'Error al enviar el correo.');
-            }
-        } catch (error) {
-            setStatus('error');
-            setResponseMessage('❌ Ocurrió un error. Por favor, revisa tu conexión e inténtalo de nuevo.');
-            console.error('API Error:', error);
-        }
-    };
-
-
-    return (
-        <section className="py-24 bg-gradient-to-b from-dark to-black relative" id="contact">
-            <div className="container mx-auto px-6 max-w-6xl">
-                <div className="grid lg:grid-cols-5 gap-12 items-start">
-                    
-                    {/* Informações de Contato (sin cambios) */}
-                    {/* ... (el código de la columna de información de contacto) ... */}
-                    <div className="lg:col-span-2 space-y-8">
-                      {/* ... Tu contenido de contacto ... */}
-                    </div>
-
-                    {/* Formulário */}
-                    <div className="lg:col-span-3">
-                        <div className="glass border border-slate-800 p-8 md:p-10 rounded-3xl shadow-2xl">
-                            <h3 className="text-2xl font-bold text-white mb-6">Envie uma mensagem</h3>
-                            
-                            {/* Conectar el formulario con el handleSubmit */}
-                            <form className="space-y-6" onSubmit={handleSubmit}> 
-                                <div className="grid md:grid-cols-2 gap-6">
-                                    <div className="space-y-2">
-                                        <label htmlFor="name" className="text-sm font-medium text-slate-300 ml-1">Nome</label>
-                                        <input 
-                                            id="name"
-                                            name="name" // IMPORTANTE: name debe coincidir con el estado
-                                            type="text" 
-                                            value={formData.name}
-                                            onChange={handleChange}
-                                            required // Añadir validación HTML
-                                            className="w-full bg-slate-900/50 border border-slate-700/50 rounded-xl px-4 py-3.5 text-white placeholder-slate-500 focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 outline-none transition-all"
-                                            placeholder="Seu nome"
-                                        />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <label htmlFor="email" className="text-sm font-medium text-slate-300 ml-1">Email</label>
-                                        <input 
-                                            id="email"
-                                            name="email" // IMPORTANTE: name debe coincidir con el estado
-                                            type="email" 
-                                            value={formData.email}
-                                            onChange={handleChange}
-                                            required
-                                            className="w-full bg-slate-900/50 border border-slate-700/50 rounded-xl px-4 py-3.5 text-white placeholder-slate-500 focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 outline-none transition-all"
-                                            placeholder="seu@email.com"
-                                        />
-                                    </div>
-                                </div>
-                                
-                                <div className="space-y-2">
-                                    <label htmlFor="subject" className="text-sm font-medium text-slate-300 ml-1">Assunto</label>
-                                    <input 
-                                        id="subject"
-                                        name="subject" // IMPORTANTE: name debe coincidir con el estado
-                                        type="text" 
-                                        value={formData.subject}
-                                        onChange={handleChange}
-                                        className="w-full bg-slate-900/50 border border-slate-700/50 rounded-xl px-4 py-3.5 text-white placeholder-slate-500 focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 outline-none transition-all"
-                                        placeholder="Assunto da mensagem"
-                                    />
-                                </div>
-
-                                <div className="space-y-2">
-                                    <label htmlFor="message" className="text-sm font-medium text-slate-300 ml-1">Mensagem</label>
-                                    <textarea 
-                                        id="message"
-                                        name="message" // IMPORTANTE: name debe coincidir con el estado
-                                        rows={5}
-                                        value={formData.message}
-                                        onChange={handleChange}
-                                        required
-                                        className="w-full bg-slate-900/50 border border-slate-700/50 rounded-xl px-4 py-3.5 text-white placeholder-slate-500 focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 outline-none transition-all resize-none"
-                                        placeholder="Sua mensagem aqui..."
-                                    ></textarea>
-                                </div>
-
-                                {/* Mostrar estado y botón de envío */}
-                                <button 
-                                    type="submit" // Cambiar a 'submit'
-                                    disabled={status === 'loading'} // Deshabilitar durante la carga
-                                    className={`w-full text-white font-bold py-4 px-6 rounded-xl transition-all transform hover:scale-[1.01] hover:shadow-lg hover:shadow-blue-500/25 flex items-center justify-center gap-3 ${
-                                        status === 'loading' 
-                                        ? 'bg-blue-400 cursor-not-allowed' 
-                                        : 'bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600'
-                                    }`}
-                                >
-                                    {status === 'loading' ? (
-                                        <>
-                                            <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
-                                            Enviando...
-                                        </>
-                                    ) : (
-                                        <>
-                                            <Send size={20} />
-                                            Enviar Mensagem
-                                        </>
-                                    )}
-                                </button>
-                                
-                                {/* Mostrar mensaje de respuesta */}
-                                {responseMessage && (
-                                    <p className={`text-center text-sm font-semibold ${status === 'success' ? 'text-green-500' : 'text-red-500'}`}>
-                                        {responseMessage}
-                                    </p>
-                                )}
-
-                            </form>
-                        </div>
-                    </div>
+                <div className="flex items-start space-x-4 p-4">
+                  <div className="p-3 bg-purple-500/10 rounded-xl text-purple-500">
+                    <MapPin size={24} />
+                  </div>
+                  <div>
+                    <h3 className="text-white font-semibold text-lg">Localização</h3>
+                    <p className="text-slate-400">Curitiba, Brasil</p>
+                  </div>
                 </div>
             </div>
-        </section>
-    );
+          </div>
+
+          {/* Formulário */}
+          <div className="lg:col-span-3">
+            <div className="glass border border-slate-800 p-8 md:p-10 rounded-3xl shadow-2xl">
+                <h3 className="text-2xl font-bold text-white mb-6">Envie uma mensagem</h3>
+                
+                <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+                <div className="grid md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                        <label className="text-sm font-medium text-slate-300 ml-1">Nome</label>
+                        <input 
+                        type="text" 
+                        className="w-full bg-slate-900/50 border border-slate-700/50 rounded-xl px-4 py-3.5 text-white placeholder-slate-500 focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 outline-none transition-all"
+                        placeholder="Seu nome"
+                        />
+                    </div>
+                    <div className="space-y-2">
+                        <label className="text-sm font-medium text-slate-300 ml-1">Email</label>
+                        <input 
+                        type="email" 
+                        className="w-full bg-slate-900/50 border border-slate-700/50 rounded-xl px-4 py-3.5 text-white placeholder-slate-500 focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 outline-none transition-all"
+                        placeholder="seu@email.com"
+                        />
+                    </div>
+                </div>
+                
+                <div className="space-y-2">
+                    <label className="text-sm font-medium text-slate-300 ml-1">Assunto</label>
+                    <input 
+                    type="text" 
+                    className="w-full bg-slate-900/50 border border-slate-700/50 rounded-xl px-4 py-3.5 text-white placeholder-slate-500 focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 outline-none transition-all"
+                    placeholder="Assunto da mensagem"
+                    />
+                </div>
+
+                <div className="space-y-2">
+                    <label className="text-sm font-medium text-slate-300 ml-1">Mensagem</label>
+                    <textarea 
+                    rows={5}
+                    className="w-full bg-slate-900/50 border border-slate-700/50 rounded-xl px-4 py-3.5 text-white placeholder-slate-500 focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 outline-none transition-all resize-none"
+                    placeholder="Sua mensagem aqui..."
+                    ></textarea>
+                </div>
+
+                <button 
+                    type="button"
+                    className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white font-bold py-4 px-6 rounded-xl transition-all transform hover:scale-[1.01] hover:shadow-lg hover:shadow-blue-500/25 flex items-center justify-center gap-3"
+                >
+                    <Send size={20} />
+                    Enviar Mensagem
+                </button>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default Contact;
