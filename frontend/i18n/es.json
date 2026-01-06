@@ -1,0 +1,17 @@
+{
+  "ui_title": "Portafolio Backend",
+  "ui_subtitle": "FastAPI · Pydantic · REST",
+  "ui_language_label": "Idioma",
+  "ui_profile_title": "Perfil",
+  "ui_projects_title": "Proyectos",
+  "ui_contact_title": "Contacto",
+  "ui_name_label": "Nombre",
+  "ui_email_label": "Email",
+  "ui_message_label": "Mensaje",
+  "ui_send_button": "Enviar",
+  "ui_footer": "Hecho para demostrar disciplina backend.",
+  "ui_project_link": "Abrir",
+  "ui_sending": "Enviando...",
+  "ui_contact_success": "Mensaje recibido.",
+  "ui_contact_error": "No se pudo enviar. Inténtalo de nuevo."
+}

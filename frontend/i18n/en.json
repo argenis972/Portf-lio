@@ -1,0 +1,17 @@
+{
+  "ui_title": "Backend Portfolio",
+  "ui_subtitle": "FastAPI · Pydantic · REST",
+  "ui_language_label": "Language",
+  "ui_profile_title": "Profile",
+  "ui_projects_title": "Projects",
+  "ui_contact_title": "Contact",
+  "ui_name_label": "Name",
+  "ui_email_label": "Email",
+  "ui_message_label": "Message",
+  "ui_send_button": "Send",
+  "ui_footer": "Built to showcase backend discipline.",
+  "ui_project_link": "Open",
+  "ui_sending": "Sending...",
+  "ui_contact_success": "Message received.",
+  "ui_contact_error": "Failed to send. Please try again."
+}

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Backend Portfolio</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="container header">
+      <div>
+        <h1 id="ui_title">Backend Portfolio</h1>
+        <p id="ui_subtitle" class="muted">FastAPI · Pydantic · REST</p>
+      </div>
+
+      <div class="lang">
+        <label for="langSelect" class="muted" id="ui_language_label">Language</label>
+        <select id="langSelect" aria-label="Language">
+          <option value="en">EN</option>
+          <option value="es">ES</option>
+          <option value="pt">PT</option>
+        </select>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="card">
+        <h2 id="ui_profile_title">Profile</h2>
+        <div id="profile"></div>
+      </section>
+
+      <section class="card">
+        <h2 id="ui_projects_title">Projects</h2>
+        <div id="projects" class="grid"></div>
+      </section>
+
+      <section class="card">
+        <h2 id="ui_contact_title">Contact</h2>
+
+        <form id="contactForm" class="form">
+          <div class="row">
+            <label for="name" id="ui_name_label">Name</label>
+            <input id="name" name="name" type="text" required minlength="2" maxlength="80" />
+          </div>
+
+          <div class="row">
+            <label for="email" id="ui_email_label">Email</label>
+            <input id="email" name="email" type="email" required />
+          </div>
+
+          <div class="row">
+            <label for="message" id="ui_message_label">Message</label>
+            <textarea id="message" name="message" required minlength="10" maxlength="2000"></textarea>
+          </div>
+
+          <button id="ui_send_button" type="submit">Send</button>
+          <p id="contactStatus" class="muted"></p>
+        </form>
+      </section>
+    </main>
+
+    <footer class="container footer muted">
+      <span id="ui_footer">Built to showcase backend discipline.</span>
+    </footer>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

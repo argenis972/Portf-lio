@@ -1,72 +1,76 @@
-# Portfólio Profissional | Argenis López
+# Backend-Focused Developer Portfolio (FastAPI + Vanilla Frontend)
 
-> "Transformando ideias em código limpo, eficiente e escalável."
+This repository is a minimal, production-oriented portfolio project designed to be reviewed quickly.
 
-Bem-vindo ao repositório do meu portfólio profissional. Este projeto foi desenvolvido para apresentar minha jornada como desenvolvedor, meus projetos e minhas competências técnicas, servindo como um cartão de visita digital interativo e moderno.
+## What to look at (1 minute)
+- Backend API: `backend/app/api/routes.py`
+- Validation models: `backend/app/models.py`
+- Config via `.env`: `backend/app/config.py`
+- Service boundary (contact): `backend/app/services.py`
+- Frontend consuming API: `frontend/app.js`
+- i18n JSON files: `frontend/i18n/*.json`
 
-## 🚀 Sobre o Projeto
+## Purpose
+Show backend discipline with:
+- Clear REST endpoints
+- Pydantic validation
+- Environment-based configuration
+- Simple service boundary (route validates -> service executes)
+- A very light frontend that consumes the API (no frameworks)
 
-Este portfólio foi construído utilizando as melhores práticas de desenvolvimento Frontend moderno. O objetivo foi criar uma interface **elegante**, **responsiva** e **performática** que se conecta dinamicamente ao GitHub para exibir meus repositórios mais recentes automaticamente.
+## API (REST)
+Base prefix: `/api`
 
-### ✨ Funcionalidades Principais
+Endpoints:
+- `GET /api/health` — basic operational maturity
+- `GET /api/profile` — typed response model
+- `GET /api/projects` — structured data (not a random list)
+- `POST /api/contact` — validation + calls a service function
 
-- **Design Responsivo:** Adaptável perfeitamente a dispositivos móveis, tablets e desktops.
-- **Integração com GitHub:** Consumo da API do GitHub para listar projetos reais automaticamente.
-- **Modo Escuro (Dark UI):** Interface moderna com paleta de cores escuras e acentos em gradiente.
-- **Animações Suaves:** Uso de transições e animações CSS para uma experiência de usuário fluida.
-- **Arquitetura Escalável:** Código organizado em componentes, layouts e serviços reutilizáveis.
+Responses are simple JSON and consistent via Pydantic response models.
 
-## 🛠️ Tecnologias Utilizadas
+## Architecture decisions (clean, not overengineered)
+- `config.py`: settings via `.env` (Pydantic Settings)
+- `models.py`: request/response contracts (Pydantic)
+- `api/routes.py`: HTTP layer only (no business logic)
+- `services.py`: business operation(s), called by routes
+- No database for this minimal version (easy to add later)
 
-O projeto foi desenvolvido com uma stack robusta e atual:
+## Language rules
+- Code: English
+- Comments in code: Portuguese
+- UI: EN / ES / PT (JSON-based i18n)
 
-- **React 19** (Biblioteca Frontend)
-- **TypeScript** (Tipagem estática e segurança de código)
-- **Tailwind CSS** (Estilização utilitária e design system)
-- **React Router** (Navegação SPA)
-- **Lucide React** (Ícones modernos e leves)
-- **Vite** (Build tool de alta performance)
+## Run locally
 
-## 💡 Mentalidade e Aprendizado Contínuo
+### 1) Backend
+```bash
+python -m venv .venv
+source .venv/bin/activate   # Windows: .venv\\Scripts\\activate
+pip install -r backend/requirements.txt
+uvicorn backend.app.main:app --reload --host 0.0.0.0 --port 8000
+```
 
-Este portfólio representa mais do que apenas linhas de código; ele é um reflexo do meu momento atual e da minha ambição profissional.
+Docs:
+- http://localhost:8000/docs
+Health check:
+- http://localhost:8000/api/health
 
-**"Ainda estou aprendendo."**
+### 2) Frontend
+Use any static server (examples):
 
-Embora eu já tenha desenvolvido diversos projetos, acredito firmemente que a tecnologia é um campo infinito. Minha motivação diária não vem apenas do que eu já sei, mas do que eu **ainda vou descobrir**.
+**Python**
+```bash
+python -m http.server 5500 --directory frontend
+```
 
-- **Fome de Conhecimento:** Estou constantemente estudando novas arquiteturas, padrões de projeto e linguagens (especialmente Python e o ecossistema Backend).
-- **Evolução:** Cada projeto que subo no GitHub é uma iteração melhor que a anterior. Busco sempre refatorar, otimizar e aplicar feedbacks.
-- **Resiliência:** Encaro bugs e desafios complexos como oportunidades para aprofundar meu entendimento sobre como as coisas funcionam "debaixo do capô".
+Then open:
+- http://localhost:5500
 
-Meu objetivo é claro: **tornar-me um desenvolvedor completo**, capaz de resolver problemas reais de ponta a ponta, contribuindo para equipes de alto nível.
+The frontend calls the backend at:
+- `http://localhost:8000/api`
 
-## 📦 Como Executar Localmente
-
-1. **Clone o repositório**
-   ```bash
-   git clone https://github.com/argenis972/portfolio.git
-   ```
-
-2. **Instale as dependências**
-   ```bash
-   cd portfolio
-   npm install
-   ```
-
-3. **Inicie o servidor de desenvolvimento**
-   ```bash
-   npm start
-   ```
-
-## 📬 Contato
-
-Estou aberto a oportunidades de trabalho, colaborações open source ou apenas para trocar uma ideia sobre tecnologia.
-
-- **LinkedIn:** [Argenis López](https://www.linkedin.com/in/argenis-lópez-649701304)
-- **Email:** [argenislopez28708256@gmail.com](mailto:argenislopez28708256@gmail.com)
-
----
-
-Desenvolvido por **Argenis López**.
-
+## Notes for production
+- Replace the contact service with real email delivery (SMTP/SendGrid/SES) or a queue.
+- Add structured logging in `services.py`.
+- Add rate limiting to `/api/contact` if public.
