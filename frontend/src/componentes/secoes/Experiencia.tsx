@@ -26,7 +26,10 @@ const CartaoExperiencia = ({
   const bulletPoints = descricao
     .split('. ')
     .filter(text => text.trim().length > 0)
-    .map(text => text.trim().endsWith('.') ? text.trim() : text.trim() + '.')
+    .map(text => {
+      const trimmed = text.trim()
+      return trimmed.endsWith('.') ? trimmed : trimmed + '.'
+    })
 
   return (
     <div className="bg-white dark:bg-slate-900 rounded-lg border border-gray-200 dark:border-slate-700 p-6 shadow-sm hover:shadow-md transition-shadow">
