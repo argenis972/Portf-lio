@@ -52,15 +52,26 @@ export const Experiencia = () => {
                 } items-center`}
               >
                 {/* Timeline dot */}
-                <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-blue-600 dark:bg-blue-500 rounded-full border-4 border-white dark:border-slate-800" />
+                <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-blue-600 dark:bg-blue-500 rounded-full border-4 border-white dark:border-gray-50 dark:border-slate-800" />
 
-                {/* Content */}
-                <div className={`w-full md:w-5/12 ${index % 2 === 0 ? 'md:text-right md:pr-12' : 'md:pl-12'} pl-8 md:pl-0`}>
-                  <div className="bg-white dark:bg-slate-900 rounded-lg p-6 shadow-lg">
-                    <div className="flex flex-wrap gap-2 mb-3">
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                        {exp.cargo}
-                      </h3>
+                {/* Content - Uniform card design */}
+                <div className={`w-full md:w-5/12 ${index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'} pl-8 md:pl-0`}>
+                  <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                    {/* Cargo */}
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                      {exp.cargo}
+                    </h3>
+                    
+                    {/* Empresa */}
+                    <p className="text-base font-medium text-gray-600 dark:text-gray-400 mb-2">
+                      {exp.empresa}
+                    </p>
+
+                    {/* Período + Badge Atual */}
+                    <div className="flex items-center gap-2 mb-4">
+                      <p className="text-sm text-gray-500 dark:text-gray-400">
+                        📍 {exp.localizacao} • {formatarPeriodo(exp.data_inicio, exp.data_fim, idioma)}
+                      </p>
                       {exp.atual && (
                         <span className="px-2 py-1 text-xs font-semibold text-white bg-green-600 dark:bg-green-500 rounded">
                           {t.experiencia.atual}
@@ -68,18 +79,23 @@ export const Experiencia = () => {
                       )}
                     </div>
 
-                    <p className="text-lg text-blue-600 dark:text-blue-400 mb-2">
-                      {exp.empresa}
-                    </p>
+                    {/* Horizontal divider */}
+                    <hr className="border-gray-200 dark:border-slate-700 mb-4" />
 
-                    <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
-                      📍 {exp.localizacao} • {formatarPeriodo(exp.data_inicio, exp.data_fim, idioma)}
-                    </p>
+                    {/* Description as bullet points */}
+                    <ul className="text-gray-600 dark:text-gray-300 mb-4 space-y-1">
+                      {exp.descricao.split('. ').filter(item => item.trim()).map((item, idx) => (
+                        <li key={idx} className="flex items-start">
+                          <span className="mr-2 text-blue-600 dark:text-blue-400">•</span>
+                          <span>{item.trim()}{item.endsWith('.') ? '' : '.'}</span>
+                        </li>
+                      ))}
+                    </ul>
 
-                    <p className="text-gray-600 dark:text-gray-300 mb-4">
-                      {exp.descricao}
-                    </p>
+                    {/* Horizontal divider */}
+                    <hr className="border-gray-200 dark:border-slate-700 mb-4" />
 
+                    {/* Technology badges */}
                     <div>
                       <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                         {t.experiencia.tecnologias}:
@@ -88,7 +104,7 @@ export const Experiencia = () => {
                         {exp.tecnologias.map((tech) => (
                           <span
                             key={tech}
-                            className="px-2 py-1 text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded"
+                            className="px-2 py-1 text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full"
                           >
                             {tech}
                           </span>
