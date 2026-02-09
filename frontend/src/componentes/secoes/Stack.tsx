@@ -8,7 +8,6 @@ const emojisCategoria: Record<CategoriaStack, string> = {
   banco_dados: '💾',
   frontend: '🎨',
   devops: '🚀',
-  ferramentas: '🛠️',
 }
 
 export const Stack = () => {
@@ -63,24 +62,33 @@ export const Stack = () => {
               </div>
 
               <div className="space-y-4">
-                {dados.por_categoria[categoria].map((item) => (
-                  <div key={item.nome}>
-                    <div className="flex justify-between items-center mb-1">
-                      <span className="text-gray-700 dark:text-gray-300 font-medium">
-                        {item.nome}
-                      </span>
-                      <span className="text-sm text-gray-500 dark:text-gray-400">
-                        {item.nivel}/5
-                      </span>
+                {dados.por_categoria[categoria].map((item) => {
+                  // Convert nivel to percentage: nivel 3 = 65%, nivel 4 = 80%
+                  const nivelToPercentage = (nivel: number): number => {
+                    if (nivel === 3) return 65
+                    if (nivel === 4) return 80
+                    return (nivel / 5) * 100
+                  }
+                  
+                  return (
+                    <div key={item.nome}>
+                      <div className="flex justify-between items-center mb-1">
+                        <span className="text-gray-700 dark:text-gray-300 font-medium">
+                          {item.nome}
+                        </span>
+                        <span className="text-sm text-gray-500 dark:text-gray-400">
+                          {nivelToPercentage(item.nivel)}%
+                        </span>
+                      </div>
+                      <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                        <div
+                          className="bg-blue-600 dark:bg-blue-500 h-2 rounded-full transition-all duration-300"
+                          style={{ width: `${nivelToPercentage(item.nivel)}%` }}
+                        />
+                      </div>
                     </div>
-                    <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                      <div
-                        className="bg-blue-600 dark:bg-blue-500 h-2 rounded-full transition-all duration-300"
-                        style={{ width: `${(item.nivel / 5) * 100}%` }}
-                      />
-                    </div>
-                  </div>
-                ))}
+                  )
+                })}
               </div>
             </div>
           ))}

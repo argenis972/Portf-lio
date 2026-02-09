@@ -29,15 +29,29 @@ export const Sobre = () => {
   return (
     <section id="sobre" className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-900 transition-colors duration-300">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-          {dados.nome}
-        </h2>
-        <p className="text-xl text-blue-600 dark:text-blue-400 mb-6">
-          {dados.titulo}
-        </p>
-        <p className="text-lg text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">
-          {dados.descricao}
-        </p>
+        <div className="flex flex-col md:flex-row gap-8 mb-8">
+          {/* Profile Photo */}
+          <div className="flex justify-center md:justify-start md:flex-shrink-0">
+            <img 
+              src="/perfil.jpg" 
+              alt="Foto de perfil de Argenis Lopez"
+              className="w-[150px] h-[150px] md:w-[200px] md:h-[200px] rounded-full ring-2 ring-blue-500/30 shadow-lg object-cover"
+            />
+          </div>
+
+          {/* Info */}
+          <div className="flex-1">
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              {dados.nome}
+            </h2>
+            <p className="text-xl text-blue-600 dark:text-blue-400 mb-6">
+              {dados.titulo}
+            </p>
+            <p className="text-lg text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">
+              {dados.descricao}
+            </p>
+          </div>
+        </div>
 
         <div className="grid md:grid-cols-2 gap-6 mb-8">
           <div className="flex items-start space-x-3">

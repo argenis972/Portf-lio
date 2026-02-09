@@ -75,14 +75,16 @@ export const Projetos = () => {
               </div>
 
               <div className="flex gap-3 mt-4">
-                <a
-                  href={`https://github.com/argenis972`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 text-center px-4 py-2 bg-gray-900 dark:bg-gray-700 text-white text-sm rounded hover:bg-gray-800 dark:hover:bg-gray-600 transition-colors duration-300"
-                >
-                  {t.projetos.codigo}
-                </a>
+                {projeto.repositorio && (
+                  <a
+                    href={projeto.repositorio}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 text-center px-4 py-2 bg-gray-900 dark:bg-gray-700 text-white text-sm rounded hover:bg-gray-800 dark:hover:bg-gray-600 transition-colors duration-300"
+                  >
+                    {t.projetos.codigo}
+                  </a>
+                )}
               </div>
             </div>
           ))}

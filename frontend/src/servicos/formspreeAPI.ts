@@ -1,7 +1,6 @@
 import type { DadosContato } from '../tipos'
 
-const FORMSPREE_ID = 'xovbzrdn'
-const FORMSPREE_URL = `https://formspree.io/f/${FORMSPREE_ID}`
+const FORMSPREE_URL = 'https://formspree.io/f/xovbzrdn'
 
 export const enviarMensagem = async (dados: DadosContato): Promise<boolean> => {
   const response = await fetch(FORMSPREE_URL, {

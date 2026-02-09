@@ -31,7 +31,7 @@ export interface RespostaProjetos {
   total: number
 }
 
-export type CategoriaStack = 'backend' | 'banco_dados' | 'frontend' | 'devops' | 'ferramentas'
+export type CategoriaStack = 'backend' | 'banco_dados' | 'frontend' | 'devops'
 
 export interface ItemStack {
   nome: string

@@ -1,24 +1,24 @@
 [
   {
     "id": "exp-001",
-    "cargo": "Backend Developer Freelancer",
-    "empresa": "Autônomo",
+    "cargo": "Backend Developer",
+    "empresa": "Loja App",
     "localizacao": "Remoto",
-    "data_inicio": "2023-06-01",
+    "data_inicio": "2024-01-01",
     "data_fim": null,
-    "descricao": "Desenvolvimento de APIs REST com Python e FastAPI para diversos clientes. Implementação de arquitetura limpa, testes automatizados, integração com bancos de dados relacionais e NoSQL. Experiência com validação de dados, documentação de APIs, deploy em cloud e CI/CD. Foco em código limpo, manutenível e bem testado.",
-    "tecnologias": ["Python", "FastAPI", "PostgreSQL", "MongoDB", "Docker", "Git", "Pytest"],
+    "descricao": "Desenvolvimento do backend de aplicação e-commerce com FastAPI. Implementação de APIs REST, autenticação, integração com PostgreSQL via SQLAlchemy, validação de dados com Pydantic e testes automatizados com Pytest. Foco em código limpo e arquitetura organizada.",
+    "tecnologias": ["Python", "FastAPI", "PostgreSQL", "SQLAlchemy", "Pydantic", "Pytest", "Git"],
     "atual": true
   },
   {
     "id": "exp-002",
-    "cargo": "Estudante de Tecnologia Autodidata",
-    "empresa": "Estudo Próprio",
+    "cargo": "Consultor de Negócios",
+    "empresa": "Ademicon",
     "localizacao": "Curitiba, PR",
-    "data_inicio": "2022-01-01",
-    "data_fim": "2023-05-31",
-    "descricao": "Período dedicado ao aprendizado intensivo de desenvolvimento backend. Estudos focados em Python, desenvolvimento web, bancos de dados, arquitetura de software e boas práticas. Realização de diversos projetos práticos para consolidar conhecimentos. Participação em comunidades de desenvolvedores e consumo de conteúdo técnico de qualidade.",
-    "tecnologias": ["Python", "FastAPI", "SQL", "Git", "Linux", "Docker"],
+    "data_inicio": "2022-03-01",
+    "data_fim": "2023-12-31",
+    "descricao": "Consultoria de negócios e atendimento a clientes. Análise de perfil, apresentação de soluções financeiras e acompanhamento de carteira. Experiência em comunicação, negociação e resolução de problemas que contribuiu para a transição para a área de tecnologia.",
+    "tecnologias": ["Atendimento ao Cliente", "Negociação", "Análise de Dados", "CRM"],
     "atual": false
   }
 ]

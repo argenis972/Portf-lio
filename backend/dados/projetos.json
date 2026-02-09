@@ -1,91 +1,53 @@
 [
   {
-    "id": "portfolio-api",
-    "nome": "Portfolio API",
-    "descricao_curta": "API REST com FastAPI e Clean Architecture demonstrando boas práticas de desenvolvimento backend",
-    "descricao_completa": "API REST desenvolvida com FastAPI seguindo princípios de Clean Architecture. Implementa separação clara de responsabilidades com Controllers, Use Cases, Entities e Adapters. Inclui validação com Pydantic V2, documentação automática OpenAPI, testes automatizados com pytest e cobertura acima de 70%. Demonstra habilidades em arquitetura de software, código limpo e desenvolvimento orientado a testes.",
-    "tecnologias": ["Python", "FastAPI", "Pydantic", "Pytest", "Clean Architecture", "REST API"],
+    "id": "loja-app",
+    "nome": "Loja App",
+    "descricao_curta": "Aplicação fullstack de e-commerce com FastAPI, React e PostgreSQL",
+    "descricao_completa": "Aplicação fullstack de e-commerce desenvolvida com FastAPI no backend e React no frontend. Implementa catálogo de produtos, carrinho de compras, autenticação de usuários e integração com banco de dados PostgreSQL. Utiliza SQLAlchemy para ORM, validação com Pydantic e testes automatizados com Pytest.",
+    "tecnologias": ["Python", "FastAPI", "React", "TypeScript", "PostgreSQL", "SQLAlchemy", "Pydantic", "Pytest"],
     "funcionalidades": [
-      "Endpoints de informações pessoais e profissionais",
-      "Listagem e detalhamento de projetos",
-      "Stack tecnológico organizado por categorias",
-      "Timeline de experiências profissionais",
-      "Formulário de contato com integração Formspree",
-      "Validação automática de dados com Pydantic",
-      "Documentação interativa com Swagger/OpenAPI",
-      "Tratamento de erros HTTP adequado"
+      "Catálogo de produtos com busca e filtros",
+      "Carrinho de compras persistente",
+      "Autenticação e autorização de usuários",
+      "API REST com documentação OpenAPI",
+      "Validação de dados com Pydantic",
+      "Testes automatizados"
     ],
     "aprendizados": [
-      "Implementação de Clean Architecture em Python",
-      "Separação de lógica de negócio e frameworks",
-      "Injeção de dependências manual",
-      "Testes unitários com mocks",
-      "Validação de dados com Pydantic V2",
-      "Documentação técnica completa",
-      "Type hints e mypy strict",
-      "Código 100% em português"
+      "Desenvolvimento fullstack com FastAPI + React",
+      "Modelagem de dados para e-commerce",
+      "Autenticação JWT",
+      "Integração frontend-backend",
+      "SQLAlchemy ORM",
+      "Testes de integração"
     ],
-    "repositorio": "https://github.com/argenis972/Portf-lio",
+    "repositorio": "https://github.com/argenis972/loja-app",
     "demo": null,
     "destaque": true
   },
   {
-    "id": "sistema-financeiro",
-    "nome": "Sistema Financeiro API",
-    "descricao_curta": "API para gestão financeira com SQLAlchemy, transações e regras de negócio complexas",
-    "descricao_completa": "Sistema de gestão financeira desenvolvido com FastAPI e SQLAlchemy. Implementa operações bancárias com transações ACID, validações de saldo, histórico de movimentações e relatórios. Utiliza PostgreSQL para persistência, migrations com Alembic e testes de integração. Demonstra conhecimento em modelagem de dados, integridade transacional e regras de negócio financeiras.",
-    "tecnologias": ["Python", "FastAPI", "SQLAlchemy", "PostgreSQL", "Alembic", "Docker"],
+    "id": "portfolio-api",
+    "nome": "Portfólio Pessoal",
+    "descricao_curta": "Portfólio pessoal com FastAPI no backend e React + TypeScript no frontend",
+    "descricao_completa": "Portfólio pessoal desenvolvido com FastAPI seguindo princípios de Clean Architecture no backend e React com TypeScript e Tailwind CSS no frontend. Demonstra separação clara de responsabilidades, validação com Pydantic, tema claro/escuro, internacionalização (PT-BR, ES, EN) e formulário de contato com Formspree.",
+    "tecnologias": ["Python", "FastAPI", "React", "TypeScript", "Tailwind CSS", "Pydantic", "Pytest"],
     "funcionalidades": [
-      "CRUD de contas bancárias",
-      "Transações financeiras com validação de saldo",
-      "Histórico de movimentações",
-      "Relatórios de receitas e despesas",
-      "Categorização de transações",
-      "API RESTful com paginação",
-      "Autenticação JWT",
-      "Testes de integração com banco de dados"
+      "API REST com Clean Architecture",
+      "Frontend SPA responsivo",
+      "Tema claro/escuro com persistência",
+      "Internacionalização (3 idiomas)",
+      "Formulário de contato com Formspree",
+      "Documentação OpenAPI automática"
     ],
     "aprendizados": [
-      "Modelagem de dados relacionais",
-      "Transações e ACID no PostgreSQL",
-      "ORM com SQLAlchemy 2.0",
-      "Migrations com Alembic",
-      "Testes de integração",
-      "Docker Compose para desenvolvimento",
-      "Regras de negócio financeiras",
-      "Validações complexas"
+      "Clean Architecture em Python",
+      "React com TypeScript",
+      "Tailwind CSS utility-first",
+      "Context API para estado global",
+      "Integração backend-frontend",
+      "Deploy e CI/CD"
     ],
-    "repositorio": null,
-    "demo": null,
-    "destaque": false
-  },
-  {
-    "id": "api-catalogo-produtos",
-    "nome": "API Catálogo de Produtos",
-    "descricao_curta": "E-commerce API com MongoDB, Redis cache e busca otimizada",
-    "descricao_completa": "API de catálogo de produtos para e-commerce desenvolvida com FastAPI. Utiliza MongoDB para armazenamento de documentos flexíveis, Redis para cache de consultas frequentes e busca por texto. Implementa paginação, filtros avançados, ordenação e agregações. Demonstra conhecimento em bancos NoSQL, estratégias de cache e otimização de performance.",
-    "tecnologias": ["Python", "FastAPI", "MongoDB", "Redis", "Motor", "Docker"],
-    "funcionalidades": [
-      "CRUD de produtos e categorias",
-      "Busca full-text em produtos",
-      "Filtros avançados (preço, categoria, estoque)",
-      "Ordenação por diferentes critérios",
-      "Paginação cursor-based",
-      "Cache de consultas com Redis",
-      "Agregações de estatísticas",
-      "Containerização com Docker"
-    ],
-    "aprendizados": [
-      "Modelagem de dados NoSQL",
-      "Motor (MongoDB async driver)",
-      "Estratégias de cache com Redis",
-      "Otimização de consultas",
-      "Busca full-text",
-      "Paginação eficiente",
-      "Agregações no MongoDB",
-      "Performance em APIs"
-    ],
-    "repositorio": null,
+    "repositorio": "https://github.com/argenis972/Portf-lio",
     "demo": null,
     "destaque": false
   }
