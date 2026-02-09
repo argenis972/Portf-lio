@@ -1,73 +1,168 @@
-# React + TypeScript + Vite
+# Portfolio Frontend - React + TypeScript + Tailwind CSS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Professional Single Page Application (SPA) built with React 18, TypeScript, and Tailwind CSS that consumes a FastAPI backend.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- ✅ **Theme Switching**: Light/Dark mode with localStorage persistence
+- ✅ **Internationalization (i18n)**: Support for 3 languages (PT-BR, ES, EN)
+- ✅ **Responsive Design**: Mobile-first approach with Tailwind CSS
+- ✅ **API Integration**: Seamless connection with FastAPI backend
+- ✅ **Form Validation**: Client-side validation with real-time error feedback
+- ✅ **Accessibility**: WCAG 2.1 AA compliant
+- ✅ **Type Safety**: Full TypeScript coverage with strict mode
+- ✅ **Modern UI**: Clean, minimalist, and professional design
 
-## React Compiler
+## 📦 Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React**: 18.3.1
+- **TypeScript**: 5.9.3
+- **Vite**: 7.2.4 (Build tool)
+- **Tailwind CSS**: 3.4.19
+- **Native Fetch API**: For HTTP requests
 
-## Expanding the ESLint configuration
+## 🏗️ Project Structure
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+frontend/
+├── public/                 # Static assets
+│   ├── favicon.svg
+│   ├── robots.txt
+│   └── manifest.json
+├── src/
+│   ├── main.tsx           # Application entry point
+│   ├── App.tsx            # Main App component
+│   ├── index.css          # Global styles
+│   ├── contextos/         # React contexts
+│   │   ├── TemaContexto.tsx
+│   │   └── IdiomaContexto.tsx
+│   ├── hooks/             # Custom hooks
+│   │   ├── useTema.ts
+│   │   ├── useIdioma.ts
+│   │   └── useAPI.ts
+│   ├── componentes/       # React components
+│   │   ├── comum/         # Common components
+│   │   │   ├── NavBar.tsx
+│   │   │   ├── Rodape.tsx
+│   │   │   ├── BotaoTema.tsx
+│   │   │   └── SeletorIdioma.tsx
+│   │   └── secoes/        # Section components
+│   │       ├── Sobre.tsx
+│   │       ├── Stack.tsx
+│   │       ├── Projetos.tsx
+│   │       ├── Experiencia.tsx
+│   │       └── Contato.tsx
+│   ├── tipos/             # TypeScript types
+│   │   └── index.ts
+│   ├── dados/             # Static data
+│   │   └── traducoes.ts
+│   ├── servicos/          # API services
+│   │   ├── portafolioAPI.ts
+│   │   └── formspreeAPI.ts
+│   └── utils/             # Utility functions
+│       ├── formatacao.ts
+│       └── validacao.ts
+├── index.html
+├── vite.config.ts
+├── tailwind.config.ts
+├── tsconfig.json
+└── package.json
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🛠️ Installation
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+# Install dependencies
+npm install
 ```
+
+## 💻 Development
+
+```bash
+# Start development server
+npm run dev
+```
+
+The application will be available at `http://localhost:5173/`
+
+## 🏗️ Build
+
+```bash
+# Build for production
+npm run build
+```
+
+Built files will be in the `dist/` directory.
+
+## 📝 Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+
+## 🌐 Backend Integration
+
+This frontend connects to a FastAPI backend running on `http://localhost:8000`
+
+### API Endpoints Used
+
+- `GET /api/sobre` - Personal information
+- `GET /api/projetos` - Projects list
+- `GET /api/stack` - Technical stack
+- `GET /api/experiencias` - Professional experience
+- `POST /api/contato` - Contact form (via Formspree)
+
+## 🎨 Theme System
+
+The application supports two themes:
+- **Light Mode**: Clean white background (#FFFFFF) with dark text (#111827)
+- **Dark Mode**: Dark slate background (#0F172A) with light text (#F1F5F9)
+
+Theme preference is persisted in localStorage.
+
+## 🌍 Internationalization
+
+Three languages are fully supported:
+- 🇧🇷 **Portuguese (PT-BR)** - Default
+- 🇪🇸 **Spanish (ES)**
+- 🇺🇸 **English (EN)**
+
+Language preference is persisted in localStorage.
+
+## ♿ Accessibility
+
+- Semantic HTML5 elements
+- ARIA labels and roles
+- Keyboard navigation support
+- Focus visible states
+- Proper contrast ratios (WCAG AA)
+- Screen reader friendly
+
+## 📱 Responsive Design
+
+Mobile-first design with breakpoints:
+- Mobile: < 768px
+- Tablet: 768px - 1024px
+- Desktop: > 1024px
+
+## 🔒 Form Validation
+
+Contact form includes:
+- Name: 3-100 characters
+- Email: Valid email format
+- Subject: 5-200 characters
+- Message: 10-5000 characters
+
+Real-time validation with error messages in current language.
+
+## 📄 License
+
+This project is part of the Argenis Lopez portfolio.
+
+## 👤 Author
+
+**Argenis Lopez**
+- GitHub: [@argenis972](https://github.com/argenis972)
+- LinkedIn: [argenis972](https://linkedin.com/in/argenis972)
+- Email: argenislopez28708256@gmail.com
