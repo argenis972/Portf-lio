@@ -64,6 +64,8 @@ export const Stack = () => {
               <div className="space-y-4">
                 {dados.por_categoria[categoria].map((item) => {
                   // Convert nivel to percentage: nivel 3 = 65%, nivel 4 = 80%
+                  // This creates a more realistic representation than linear scaling (e.g., 3/5 = 60%)
+                  // 65% shows intermediate proficiency, 80% shows advanced proficiency
                   const nivelToPercentage = (nivel: number): number => {
                     if (nivel === 3) return 65
                     if (nivel === 4) return 80

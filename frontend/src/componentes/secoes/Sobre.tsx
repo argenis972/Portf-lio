@@ -33,7 +33,7 @@ export const Sobre = () => {
           {/* Profile Photo */}
           <div className="flex justify-center md:justify-start md:flex-shrink-0">
             <img 
-              src="/perfil.jpg" 
+              src="/perfil.svg" 
               alt="Foto de perfil de Argenis Lopez"
               className="w-[150px] h-[150px] md:w-[200px] md:h-[200px] rounded-full ring-2 ring-blue-500/30 shadow-lg object-cover"
             />
