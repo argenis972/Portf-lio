@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useIdioma } from '../../hooks/useIdioma'
 import { useAPI } from '../../hooks/useAPI'
 import { portafolioAPI } from '../../servicos/portafolioAPI'
@@ -5,6 +6,7 @@ import { portafolioAPI } from '../../servicos/portafolioAPI'
 export const Sobre = () => {
   const { t } = useIdioma()
   const { dados, carregando, erro } = useAPI(portafolioAPI.obterSobre)
+  const [fotoCarregou, setFotoCarregou] = useState(true)
 
   if (carregando) {
     return (
@@ -32,24 +34,20 @@ export const Sobre = () => {
         <div className="flex flex-col md:flex-row gap-8 mb-8">
           {/* Profile Photo */}
           <div className="flex justify-center md:justify-start md:flex-shrink-0">
-            <img 
-              src="/perfil.jpg" 
-              alt="Foto de perfil de Argenis Lopez"
-              className="w-[150px] h-[150px] md:w-[200px] md:h-[200px] rounded-full ring-2 ring-blue-500/30 shadow-lg object-cover"
-              onError={(e) => {
-                // Fallback: hide image and show initials
-                (e.target as HTMLImageElement).style.display = 'none'
-                const fallback = document.getElementById('foto-fallback')
-                if (fallback) fallback.style.display = 'flex'
-              }}
-            />
-            <div
-              id="foto-fallback"
-              className="w-[150px] h-[150px] md:w-[200px] md:h-[200px] rounded-full ring-2 ring-blue-500/30 shadow-lg bg-blue-500 items-center justify-center text-white text-4xl font-bold"
-              style={{ display: 'none' }}
-            >
-              AL
-            </div>
+            {fotoCarregou ? (
+              <img 
+                src="/perfil.jpg" 
+                alt="Foto de perfil de Argenis Lopez"
+                className="w-[150px] h-[150px] md:w-[200px] md:h-[200px] rounded-full ring-2 ring-blue-500/30 shadow-lg object-cover"
+                onError={() => setFotoCarregou(false)}
+              />
+            ) : (
+              <div
+                className="w-[150px] h-[150px] md:w-[200px] md:h-[200px] rounded-full ring-2 ring-blue-500/30 shadow-lg bg-blue-500 flex items-center justify-center text-white text-4xl font-bold"
+              >
+                AL
+              </div>
+            )}
           </div>
 
           {/* Info */}

@@ -84,12 +84,17 @@ export const Experiencia = () => {
 
                     {/* Description as bullet points */}
                     <ul className="text-gray-600 dark:text-gray-300 mb-4 space-y-1">
-                      {exp.descricao.split('. ').filter(item => item.trim()).map((item, idx) => (
-                        <li key={idx} className="flex items-start">
-                          <span className="mr-2 text-blue-600 dark:text-blue-400">•</span>
-                          <span>{item.trim()}{item.endsWith('.') ? '' : '.'}</span>
-                        </li>
-                      ))}
+                      {exp.descricao.split(/\.\s+/).filter(item => item.trim()).map((item) => {
+                        const trimmedItem = item.trim()
+                        // Use first 20 chars as stable key
+                        const key = `${exp.id}-${trimmedItem.substring(0, 20)}`
+                        return (
+                          <li key={key} className="flex items-start">
+                            <span className="mr-2 text-blue-600 dark:text-blue-400">•</span>
+                            <span>{trimmedItem}{trimmedItem.endsWith('.') ? '' : '.'}</span>
+                          </li>
+                        )
+                      })}
                     </ul>
 
                     {/* Horizontal divider */}
