@@ -2,12 +2,12 @@
   {
     "id": "exp-001",
     "cargo": "Backend Developer",
-    "empresa": "Loja App",
+    "empresa": "Loja App (Projeto Pessoal)",
     "localizacao": "Remoto",
-    "data_inicio": "2024-01-01",
+    "data_inicio": "2025-01-01",
     "data_fim": null,
-    "descricao": "Desenvolvimento do backend de aplicação e-commerce com FastAPI. Implementação de APIs REST, autenticação, integração com PostgreSQL via SQLAlchemy, validação de dados com Pydantic e testes automatizados com Pytest. Foco em código limpo e arquitetura organizada.",
-    "tecnologias": ["Python", "FastAPI", "PostgreSQL", "SQLAlchemy", "Pydantic", "Pytest", "Git"],
+    "descricao": "API REST com FastAPI para sistema de pagamentos com regras de negócio financeiras. Arquitetura hexagonal com separação clara entre domínio, casos de uso, adaptadores. Testes unitários e de integração com pytest, documentação com Swagger UI.",
+    "tecnologias": ["Python", "FastAPI", "PostgreSQL", "SQLAlchemy", "Pytest"],
     "atual": true
   },
   {
@@ -15,10 +15,10 @@
     "cargo": "Consultor de Negócios",
     "empresa": "Ademicon",
     "localizacao": "Curitiba, PR",
-    "data_inicio": "2022-03-01",
-    "data_fim": "2023-12-31",
-    "descricao": "Consultoria de negócios e atendimento a clientes. Análise de perfil, apresentação de soluções financeiras e acompanhamento de carteira. Experiência em comunicação, negociação e resolução de problemas que contribuiu para a transição para a área de tecnologia.",
-    "tecnologias": ["Atendimento ao Cliente", "Negociação", "Análise de Dados", "CRM"],
+    "data_inicio": "2025-06-01",
+    "data_fim": "2025-10-31",
+    "descricao": "Análise de perfis financeiros e elaboração de propostas consultivas. Operação de sistemas internos e organização de documentação de clientes. Desenvolvimento de habilidades: comunicação, negociação, responsabilidade com dados.",
+    "tecnologias": ["Análise Financeira", "Negociação", "Documentação"],
     "atual": false
   }
 ]

@@ -2,50 +2,50 @@
   {
     "id": "loja-app",
     "nome": "Loja App",
-    "descricao_curta": "Aplicação fullstack de e-commerce com FastAPI, React e PostgreSQL",
-    "descricao_completa": "Aplicação fullstack de e-commerce desenvolvida com FastAPI no backend e React no frontend. Implementa catálogo de produtos, carrinho de compras, autenticação de usuários e integração com banco de dados PostgreSQL. Utiliza SQLAlchemy para ORM, validação com Pydantic e testes automatizados com Pytest.",
-    "tecnologias": ["Python", "FastAPI", "React", "TypeScript", "PostgreSQL", "SQLAlchemy", "Pydantic", "Pytest"],
+    "descricao_curta": "API REST com FastAPI para sistema de pagamentos com regras de negócio financeiras",
+    "descricao_completa": "Sistema com arquitetura hexagonal, validação Pydantic, testes pytest, documentação Swagger. Implementa APIs REST, autenticação, integração com PostgreSQL via SQLAlchemy.",
+    "tecnologias": ["Python", "FastAPI", "PostgreSQL", "SQLAlchemy", "Pydantic", "Pytest"],
     "funcionalidades": [
-      "Catálogo de produtos com busca e filtros",
-      "Carrinho de compras persistente",
-      "Autenticação e autorização de usuários",
-      "API REST com documentação OpenAPI",
-      "Validação de dados com Pydantic",
-      "Testes automatizados"
+      "APIs REST para sistema de pagamentos",
+      "Regras de negócio financeiras",
+      "Arquitetura hexagonal",
+      "Validação com Pydantic",
+      "Testes automatizados com Pytest",
+      "Documentação Swagger"
     ],
     "aprendizados": [
-      "Desenvolvimento fullstack com FastAPI + React",
-      "Modelagem de dados para e-commerce",
-      "Autenticação JWT",
-      "Integração frontend-backend",
+      "Arquitetura hexagonal em Python",
+      "Regras de negócio financeiras",
       "SQLAlchemy ORM",
-      "Testes de integração"
+      "Testes de integração",
+      "Documentação de APIs",
+      "Clean Code"
     ],
-    "repositorio": "https://github.com/argenis972/loja-app",
+    "repositorio": "https://github.com/argenis972/Loja_app",
     "demo": null,
     "destaque": true
   },
   {
-    "id": "portfolio-api",
+    "id": "portfolio",
     "nome": "Portfólio Pessoal",
-    "descricao_curta": "Portfólio pessoal com FastAPI no backend e React + TypeScript no frontend",
-    "descricao_completa": "Portfólio pessoal desenvolvido com FastAPI seguindo princípios de Clean Architecture no backend e React com TypeScript e Tailwind CSS no frontend. Demonstra separação clara de responsabilidades, validação com Pydantic, tema claro/escuro, internacionalização (PT-BR, ES, EN) e formulário de contato com Formspree.",
-    "tecnologias": ["Python", "FastAPI", "React", "TypeScript", "Tailwind CSS", "Pydantic", "Pytest"],
+    "descricao_curta": "Portfólio fullstack com FastAPI backend e React + TypeScript frontend",
+    "descricao_completa": "Portfólio pessoal com Clean Architecture no backend e React com TypeScript e Tailwind CSS no frontend. Tema claro/escuro, internacionalização (PT-BR, ES, EN) e formulário de contato com Formspree.",
+    "tecnologias": ["Python", "FastAPI", "React", "TypeScript", "Tailwind CSS", "Pydantic"],
     "funcionalidades": [
       "API REST com Clean Architecture",
       "Frontend SPA responsivo",
-      "Tema claro/escuro com persistência",
+      "Tema claro/escuro",
       "Internacionalização (3 idiomas)",
-      "Formulário de contato com Formspree",
-      "Documentação OpenAPI automática"
+      "Formulário de contato",
+      "Documentação OpenAPI"
     ],
     "aprendizados": [
       "Clean Architecture em Python",
       "React com TypeScript",
-      "Tailwind CSS utility-first",
-      "Context API para estado global",
+      "Tailwind CSS",
+      "Context API",
       "Integração backend-frontend",
-      "Deploy e CI/CD"
+      "i18n customizado"
     ],
     "repositorio": "https://github.com/argenis972/Portf-lio",
     "demo": null,
