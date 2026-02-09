@@ -59,7 +59,7 @@ export const Contato = () => {
       } else {
         setMensagemStatus({ tipo: 'erro', texto: t.contato.erro })
       }
-    } catch (error) {
+    } catch {
       setMensagemStatus({ tipo: 'erro', texto: t.contato.erro })
     } finally {
       setEnviando(false)

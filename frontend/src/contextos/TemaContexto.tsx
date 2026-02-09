@@ -6,6 +6,7 @@ interface TemaContextoTipo {
   alternarTema: () => void
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const TemaContexto = createContext<TemaContextoTipo | undefined>(undefined)
 
 export const TemaProvider = ({ children }: { children: ReactNode }) => {

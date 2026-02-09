@@ -1,3 +1,5 @@
+import type { Traducoes } from '../dados/traducoes'
+
 export const validarEmail = (email: string): boolean => {
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
   return regex.test(email)
@@ -27,7 +29,7 @@ export const validarFormularioContato = (
   email: string,
   assunto: string,
   mensagem: string,
-  traducoes: any
+  traducoes: Traducoes
 ): ErrosFormulario => {
   const erros: ErrosFormulario = {}
   

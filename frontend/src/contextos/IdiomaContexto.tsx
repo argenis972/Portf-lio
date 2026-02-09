@@ -8,6 +8,7 @@ interface IdiomaContextoTipo {
   mudarIdioma: (novoIdioma: Idioma) => void
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const IdiomaContexto = createContext<IdiomaContextoTipo | undefined>(undefined)
 
 export const IdiomaProvider = ({ children }: { children: ReactNode }) => {

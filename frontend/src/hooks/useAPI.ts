@@ -26,6 +26,7 @@ export const useAPI = <T,>(fetcher: () => Promise<T>): UseAPIResult<T> => {
     }
 
     carregarDados()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return { dados, carregando, erro }
