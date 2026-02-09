@@ -3,6 +3,84 @@ import { useAPI } from '../../hooks/useAPI'
 import { portafolioAPI } from '../../servicos/portafolioAPI'
 import { formatarPeriodo } from '../../utils/formatacao'
 
+interface CartaoExperienciaProps {
+  cargo: string
+  empresa: string
+  periodo: string
+  descricao: string
+  tecnologias: string[]
+  atual?: boolean
+  atualLabel: string
+}
+
+const CartaoExperiencia = ({ 
+  cargo, 
+  empresa, 
+  periodo, 
+  descricao, 
+  tecnologias, 
+  atual,
+  atualLabel 
+}: CartaoExperienciaProps) => {
+  // Split description into bullet points
+  const bulletPoints = descricao
+    .split('. ')
+    .filter(text => text.trim().length > 0)
+    .map(text => text.trim().endsWith('.') ? text.trim() : text.trim() + '.')
+
+  return (
+    <div className="bg-white dark:bg-slate-900 rounded-lg border border-gray-200 dark:border-slate-700 p-6 shadow-sm hover:shadow-md transition-shadow">
+      {/* 1. Encabezado: Cargo + Empresa + Período */}
+      <div className="mb-4">
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+          {cargo}
+        </h3>
+        <p className="text-base text-gray-600 dark:text-gray-400 font-medium">
+          {empresa}
+        </p>
+        <div className="flex items-center gap-2 mt-1">
+          <p className="text-sm text-gray-500 dark:text-gray-500">
+            {periodo}
+          </p>
+          {atual && (
+            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200">
+              {atualLabel}
+            </span>
+          )}
+        </div>
+      </div>
+
+      {/* 2. Divisor */}
+      <div className="border-t border-gray-200 dark:border-slate-700 my-4" />
+
+      {/* 3. Descripción con bullet points */}
+      <div className="mb-4 space-y-2">
+        {bulletPoints.map((bullet, index) => (
+          <div key={index} className="flex gap-3">
+            <span className="text-blue-500 mt-1">•</span>
+            <p className="text-gray-700 dark:text-gray-300 text-sm">{bullet}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* 4. Divisor */}
+      <div className="border-t border-gray-200 dark:border-slate-700 my-4" />
+
+      {/* 5. Tecnologías como badges azules */}
+      <div className="flex flex-wrap gap-2">
+        {tecnologias.map((tech) => (
+          <span 
+            key={tech}
+            className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200"
+          >
+            {tech}
+          </span>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 export const Experiencia = () => {
   const { t, idioma } = useIdioma()
   const { dados, carregando, erro } = useAPI(portafolioAPI.listarExperiencias)
@@ -39,67 +117,19 @@ export const Experiencia = () => {
           </p>
         </div>
 
-        <div className="relative">
-          {/* Timeline line */}
-          <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 h-full w-0.5 bg-blue-600 dark:bg-blue-500" />
-
-          <div className="space-y-12">
-            {dados.experiencias.map((exp, index) => (
-              <div
-                key={exp.id}
-                className={`relative flex flex-col md:flex-row ${
-                  index % 2 === 0 ? 'md:flex-row-reverse' : ''
-                } items-center`}
-              >
-                {/* Timeline dot */}
-                <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-blue-600 dark:bg-blue-500 rounded-full border-4 border-white dark:border-slate-800" />
-
-                {/* Content */}
-                <div className={`w-full md:w-5/12 ${index % 2 === 0 ? 'md:text-right md:pr-12' : 'md:pl-12'} pl-8 md:pl-0`}>
-                  <div className="bg-white dark:bg-slate-900 rounded-lg p-6 shadow-lg">
-                    <div className="flex flex-wrap gap-2 mb-3">
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                        {exp.cargo}
-                      </h3>
-                      {exp.atual && (
-                        <span className="px-2 py-1 text-xs font-semibold text-white bg-green-600 dark:bg-green-500 rounded">
-                          {t.experiencia.atual}
-                        </span>
-                      )}
-                    </div>
-
-                    <p className="text-lg text-blue-600 dark:text-blue-400 mb-2">
-                      {exp.empresa}
-                    </p>
-
-                    <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
-                      📍 {exp.localizacao} • {formatarPeriodo(exp.data_inicio, exp.data_fim, idioma)}
-                    </p>
-
-                    <p className="text-gray-600 dark:text-gray-300 mb-4">
-                      {exp.descricao}
-                    </p>
-
-                    <div>
-                      <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                        {t.experiencia.tecnologias}:
-                      </h4>
-                      <div className="flex flex-wrap gap-2">
-                        {exp.tecnologias.map((tech) => (
-                          <span
-                            key={tech}
-                            className="px-2 py-1 text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+        <div className="space-y-6">
+          {dados.experiencias.map((exp) => (
+            <CartaoExperiencia
+              key={exp.id}
+              cargo={exp.cargo}
+              empresa={exp.empresa}
+              periodo={formatarPeriodo(exp.data_inicio, exp.data_fim, idioma)}
+              descricao={exp.descricao}
+              tecnologias={exp.tecnologias}
+              atual={exp.atual}
+              atualLabel={t.experiencia.atual}
+            />
+          ))}
         </div>
       </div>
     </section>
